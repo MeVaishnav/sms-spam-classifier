@@ -36,7 +36,7 @@ model=pk.load(open('model.pkl','rb'))
 
 st.title("EMAIL/SMS SPAM CLASSIFIER")
 
-input_sms=st.text_input("Enter the message")
+input_sms=st.text_area("Enter the message")
 
 if st.button('Predict'):
 
