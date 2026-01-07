@@ -38,20 +38,22 @@ st.title("EMAIL/SMS SPAM CLASSIFIER")
 
 input_sms=st.text_input("Enter the message")
 
-#preprocess
-transform_sms=transform_text(input_sms)
+if st.button('Predict'):
 
-#vectorize
-vector_input=tfidf.transform([transform_sms])
+    # preprocess
+    transform_sms = transform_text(input_sms)
 
-#predict
-result=model.predict(vector_input)[0]
+    # vectorize
+    vector_input = tfidf.transform([transform_sms])
 
-#display
-if result==1:
-    st.header("Spam")
-else:
-    st.header("not spam")
+    # predict
+    result = model.predict(vector_input)[0]
+
+    # display
+    if result == 1:
+        st.header("Spam")
+    else:
+        st.header("not spam")
 
 
 
