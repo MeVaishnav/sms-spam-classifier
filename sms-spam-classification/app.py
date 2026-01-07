@@ -1,6 +1,11 @@
 import streamlit as st
 import pickle as pk
+import string
+from nltk.corpus import stopwords
+import nltk
+from nltk.stem.porter import PorterStemmer
 
+ps=PorterStemmer
 def transform_text(text):
     text=text.lower()
     text=nltk.word_tokenize(text)
@@ -35,4 +40,18 @@ input_sms=st.text_input("Enter the message")
 
 #preprocess
 transform_sms=transform_text(input_sms)
+
+#vectorize
+vector_input=tfidf.transform([transform_sms])
+
+#predict
+result=model.predict(vector_input)[0]
+
+#display
+if result==1:
+    st.header("Spam")
+else:
+    st.header("not spam")
+
+
 
